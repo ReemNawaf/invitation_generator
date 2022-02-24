@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:invitation_generator/home_page.dart';
 import 'package:invitation_generator/localization/app_localization.dart';
 import 'package:invitation_generator/localization/localization_constants.dart';
+import 'package:invitation_generator/pages/choosing_template_page.dart';
+import 'package:invitation_generator/pages/form_page.dart';
+import 'package:invitation_generator/pages/home_page.dart';
+import 'package:invitation_generator/pages/preview_page.dart';
+import 'package:invitation_generator/pages/share_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:invitation_generator/shared/app_colors.dart';
+import 'package:invitation_generator/shared/text_styles.dart';
 
 void main() => runApp(const MyApp());
 
@@ -53,8 +59,57 @@ class _MyAppState extends State<MyApp> {
       },
       routes: {
         HomePage.routeName: (context) => const HomePage(),
+        PreviewPage.routeName: (context) => const PreviewPage(),
+        SharePage.routeName: (context) => const SharePage(),
+        FormPage.routeName: (context) => FormPage(),
+        ChoosingTemplatePage.routeName: (context) =>
+            const ChoosingTemplatePage(),
       },
       initialRoute: HomePage.routeName,
+      builder: (context, navigator) {
+        final lang = Localizations.localeOf(context).languageCode;
+
+        return Theme(
+          data: ThemeData.light().copyWith(
+            textTheme: Theme.of(context)
+                .textTheme
+                .copyWith(
+                  headline6: kTitle1Style,
+                  headline5: kTitle2Style,
+                  headline4: kTitle3Style,
+                  headline3: kTitle3Style,
+                  headline2: kTitle3Style,
+                  headline1: kTitle3Style,
+                  bodyText1: kbodyeStyle,
+                  bodyText2: kSubheadStyle,
+                )
+                .apply(
+                  fontFamily: lang == arabic ? 'NotoSansArabic' : 'OpenSans',
+                ),
+            primaryColor: kPurplesColor,
+            colorScheme: ColorScheme(
+              primary: kPurplesColor,
+              secondary: kBlacksColor,
+              surface: kWhiteColor,
+              background: kBlacksColor,
+              error: kRedsColor,
+              onPrimary: kWhiteColor,
+              onSecondary: kPurplesColor,
+              onSurface: kBlacksColor,
+              onBackground: kWhiteColor,
+              onError: kRedsColor,
+              brightness: Brightness.light,
+            ),
+            scaffoldBackgroundColor: kWhiteColor,
+            inputDecorationTheme: const InputDecorationTheme(
+              border: OutlineInputBorder(
+                borderSide: BorderSide(color: kPrimaryLableColor, width: 1.5),
+              ),
+            ),
+          ),
+          child: navigator!,
+        );
+      },
     );
   }
 }

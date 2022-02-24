@@ -34,3 +34,42 @@ flutter:
   - assets/images/
   - lib/localization/lang/ar.json
   - lib/localization/lang/en.json
+
+
+
+  fonts:
+    - family: OpenSans
+      fonts:
+        - asset: assets/fonts/open-sans-en/OpenSans-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/open-sans-en/OpenSans-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/open-sans-en/OpenSans-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/open-sans-en/OpenSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/open-sans-en/OpenSans-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/open-sans-en/OpenSans-Light.ttf
+          weight: 300
+
+    - family: NotoSansArabic
+      fonts:
+        - asset: assets/fonts/noto-sans-ar/NotoSansArabic-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/noto-sans-ar/NotoSansArabic-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/noto-sans-ar/NotoSansArabic-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/noto-sans-ar/NotoSansArabic-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/noto-sans-ar/NotoSansArabic-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/noto-sans-ar/NotoSansArabic-Black.ttf
+          weight: 900
+        - asset: assets/fonts/noto-sans-ar/NotoSansArabic-Light.ttf
+          weight: 300
+        - asset: assets/fonts/noto-sans-ar/NotoSansArabic-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/noto-sans-ar/NotoSansArabic-Thin.ttf
+          weight: 100
