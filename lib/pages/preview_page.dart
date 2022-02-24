@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:invitation_generator/localization/localization_constants.dart';
 import 'package:invitation_generator/pages/form_page.dart';
 import 'package:invitation_generator/shared/ui_helpers.dart';
+import 'package:invitation_generator/utils/widget_to_image.dart';
 import 'package:invitation_generator/widgets/app_btn.dart';
 import 'package:invitation_generator/widgets/app_bar.dart';
 import 'package:invitation_generator/widgets/app_title.dart';
@@ -15,6 +16,7 @@ class PreviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GlobalKey? _globalKey;
     return SafeArea(
       child: Scaffold(
         body: Center(
@@ -31,7 +33,10 @@ class PreviewPage extends StatelessWidget {
                       stepNum: 3,
                     ),
                     sizedBox,
-                    const InvitationTemplate(),
+                    WidgetToImage(builder: (capKey) {
+                      _globalKey = capKey;
+                      return const InvitationTemplate();
+                    }),
                     const SizedBox(height: 14.0),
                     AppButton(
                       label: getTr(context, 'edit')!,
