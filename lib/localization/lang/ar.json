@@ -1,0 +1,67 @@
+{
+    "Hello, Dash!": "أهلًا، بداش!",
+    "to_be_able_to_create_invitations": "حتى تقوم بإنشاء الدعوات",
+    "you_just_need_to_follow": "عليك فقط أتباع",
+    "steps": "خطوات",
+    "create_invitation": "أنشئ بطاقة دعوة",
+    
+    
+    "from": "من",
+    "add_invitaion_information": "أدخل بيانات الدعوة",
+    "invitee_name": "اسم المدعو",
+    "ex_invitee_name": "ريم المطيري",
+    "male": "ذكر",
+    "female": "أنثى",
+    "city": "المدينة",
+    "ex_city": "مثل: جدة",
+
+    "i_will_be_so_glad_to_see_you": "سأسعد كثيرًا برؤيتك يوم",
+
+    "in_for_city": "في مدينة",
+
+    "on_for_day_M": "تاريخ",
+
+    "day_and_date": "اليوم والوقت",
+    "change": "تغيير",
+    "if_there_is": "إن وجد",
+    "event_name": "اسم الحدث",
+    "ex_event_name": "مثل: مهرجان فلاتر",
+    "event_name_explanation": "في حال كانت الدعوة لحدث مجدول، وليست فقط لقاء عارض",
+    "time": "الوقت",
+    "choose_hour": "تغيير الساعة",
+    "next": "التالي",
+
+    "you_didnot_enter_the_location_name": "لم تدخل اسم المكان",
+    "location_name_is_too_short": "اسم المكان قصير جدًا",
+    "location_name_is_too_long": "اسم المكان طويل جدًا",
+
+    "event_name_is_too_short": "اسم الحدث قصير جدًا",
+    "event_name_is_too_long": "اسم الحدث طويل جدًا",
+
+    "you_didnot_enter_the_invitee_name": "لم تدخل اسم المدعو",
+    "invitee_name_is_too_short": "اسم المدعو قصير جدًا؛ لا أعتقد أنه اسم شخص",
+    "invitee_name_is_too_long": "اسم المدعو طويل جدًا، الاسم الأول والثاني يكفيان",
+
+
+    "choose_the_template": "اختر القالب",
+
+    "preview_invitaion_and_share": "معاينة البطاقة ومشاركتها",
+    "my_dear_friend": "صديقي العزيز",
+    "my_dear_friend_female": "صديقتي العزيزة",
+    
+    "i_am_pleased": "يسعدني دعوتك",
+    "to_attend": "لحضور",
+    "event": "فعالية",
+    "to_be_held_in": "التي ستقام في",
+    "on_for_day": "يوم",
+    "at_for_time": "الساعة",
+    "comma_for_date": "الموافق",
+    "comma": "،",
+    "best_regards": "مع خالص تحياتي،",
+    "dash": "داش",
+    "invitation_card": "بطاقة الدعوة",
+    "edit": "تعديل",
+    "share": "مشاركة"
+
+
+}

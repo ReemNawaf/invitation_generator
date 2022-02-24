@@ -1,0 +1,63 @@
+{
+    "Hello, Dash!": "Hello, Dash!",
+    "to_be_able_to_create_invitations": "To be able to create invitations",
+    "you_just_need_to_follow": "you just need to follow",
+    "steps": "steps",
+    "create_invitation": "Create a invitation",
+    
+    
+    "from": "from",
+    "add_invitaion_information": "Add invitaion's information",
+    "invitee_name": "Invitee name",
+    "ex_invitee_name": "ex. Reem",
+    "male": "Male",
+    "female": "Female",
+    "city": "City",
+    "ex_city": "ex. jeddah",
+    "day_and_date": "Day and Date",
+    "change": "change",
+    "if_there_is": "if there is",
+    "event_name": "Event Name",
+    "ex_event_name": "ex. Flutter Festival",
+    "event_name_explanation": "When the invitation is for a scheduled event, not just a casual meeting.",
+    "time": "Time",
+    "choose_hour": "Choose a hour",
+    "next": "Next",
+
+    "you_didnot_enter_the_location_name": "You did not enter the location name.",
+    "location_name_is_too_short": "location name is too short.",
+    "location_name_is_too_long": "location name is too long.",
+
+    "event_name_is_too_short": "event name is too short.",
+    "event_name_is_too_long": "event name is too long.",
+
+    "you_didnot_enter_the_invitee_name": "You did not enter invitee name.",
+    "invitee_name_is_too_short": "invitee name is too short, is it a name?",
+    "invitee_name_is_too_long": "invitee name is too long.",
+
+
+    "choose_the_template": "Choose the template",
+
+    "preview_invitaion_and_share": "Preview and Share",
+    "my_dear_friend": "My dear friend,",
+    "i_am_pleased": "I am pleased",
+    "i_will_be_so_glad_to_see_you": "I will be so glad to see you",
+    "to_attend": "to invite you to attend",
+    "event": "event",
+    "to_be_held_in": "to be held in",
+    "in_for_city": "in",
+
+    "on_for_day": "on",
+    "on_for_day_M": ",",
+
+    "at_for_time": "at",
+    "comma_for_date": ",",
+    "comma": ",",
+    "best_regards": "Best regards,",
+    "dash": "Dash",
+    "invitation_card": "Invitation Card",
+    "edit": "Edit",
+    "share": "Share"
+
+
+}
