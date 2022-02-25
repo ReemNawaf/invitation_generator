@@ -24,7 +24,7 @@ class AppTitle extends StatelessWidget {
             padding:
                 const EdgeInsets.symmetric(vertical: 4.0, horizontal: 12.0),
             child: Text(
-              '${getTr(context, 'steps')} $stepNum ${getTr(context, 'from')} $appStepsNum',
+              '$stepNum ${getTr(context, 'from')} $appStepsNum ${getTr(context, 'steps')}',
               style: kCaption2Style,
             ),
             decoration: BoxDecoration(

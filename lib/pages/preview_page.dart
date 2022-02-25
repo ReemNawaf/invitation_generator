@@ -4,6 +4,10 @@ import 'package:invitation_generator/controllers/invitation_controller.dart';
 import 'package:invitation_generator/localization/localization_constants.dart';
 import 'package:invitation_generator/pages/form_page.dart';
 import 'package:invitation_generator/pages/home_page.dart';
+import 'package:invitation_generator/shared/app_colors.dart';
+import 'package:invitation_generator/shared/box_dec.dart';
+import 'package:invitation_generator/shared/constants.dart';
+import 'package:invitation_generator/shared/text_styles.dart';
 import 'package:invitation_generator/shared/ui_helpers.dart';
 import 'package:invitation_generator/utils/utils.dart';
 import 'package:invitation_generator/utils/widget_to_image.dart';
@@ -43,7 +47,31 @@ class PreviewPage extends StatelessWidget {
                                 getTr(context, 'preview_invitaion_and_share')!,
                             stepNum: 3,
                           ),
-                          sizedBox,
+                          const SizedBox(height: 2.0),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Consumer(builder: (context, ref, child) {
+                                return Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 1.0, horizontal: 10.0),
+                                  child: Text(
+                                    ref.read(inviIdProvider),
+                                    style: kCaption2Style,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    borderRadius: kAppBorderRadius,
+                                    color: getThemeColor(
+                                            ref.read(inviThemeProvider))
+                                        .shade800
+                                        .withOpacity(0.5),
+                                  ),
+                                );
+                              }),
+                            ],
+                          ),
+                          const SizedBox(height: 10.0),
                           WidgetToImage(builder: (capKey) {
                             _globalKey = capKey;
                             return const InvitationTemplate();
