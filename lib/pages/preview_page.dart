@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:invitation_generator/controllers/invitation_controller.dart';
-import 'package:invitation_generator/home_page.dart';
 import 'package:invitation_generator/localization/localization_constants.dart';
 import 'package:invitation_generator/pages/form_page.dart';
+import 'package:invitation_generator/pages/home_page.dart';
 import 'package:invitation_generator/shared/ui_helpers.dart';
 import 'package:invitation_generator/utils/utils.dart';
 import 'package:invitation_generator/utils/widget_to_image.dart';
@@ -20,6 +20,7 @@ class PreviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final lang = Localizations.localeOf(context).languageCode;
     GlobalKey? _globalKey;
     return SafeArea(
       child: Scaffold(
@@ -70,6 +71,7 @@ class PreviewPage extends StatelessWidget {
                                   Utils.shareInvAsPNG(
                                     bytes: ref.watch(inviImageBytesProvider)!,
                                     invPath: ref.watch(inviIdProvider),
+                                    context: context,
                                   );
                                 }
                               },
@@ -80,7 +82,7 @@ class PreviewPage extends StatelessWidget {
                             builder: (context, ref, child) => AppButton(
                                 label: getTr(context, 'create_new_invitation')!,
                                 hasIcon: true,
-                                icon: Icons.edit,
+                                icon: Icons.add,
                                 onPressed: () {
                                   ref.read(invitationProvider).reset();
                                   Navigator.pushNamed(

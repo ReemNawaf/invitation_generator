@@ -1,4 +1,4 @@
-package com.example.invitation_generator
+package com.abrain.invitation_generator
 
 import io.flutter.embedding.android.FlutterActivity
 

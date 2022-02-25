@@ -6,7 +6,6 @@ import 'package:invitation_generator/localization/localization_constants.dart';
 import 'package:invitation_generator/shared/app_colors.dart';
 import 'package:invitation_generator/shared/constants.dart';
 import 'package:invitation_generator/shared/text_styles.dart';
-import 'package:invitation_generator/shared/ui_helpers.dart';
 
 const double imageWidth = 100;
 const String space = ' ';
@@ -105,13 +104,15 @@ class InvitationTemplate extends ConsumerWidget {
                 Text(
                   inviteeName,
                   style: kBodyText2Style.copyWith(
-                      height: 1.6, color: color, fontWeight: FontWeight.bold),
+                      height: lang == arabic ? 1.6 : 1.9,
+                      color: color,
+                      fontWeight: FontWeight.bold),
                 ),
                 if (hasEventName)
                   Text(
                     getTr(context, 'i_am_pleased')!,
                     style: kBodyText2Style.copyWith(
-                      height: lang == arabic ? 1.2 : 1.1,
+                      height: lang == arabic ? 1.2 : 1.4,
                     ),
                   )
               ],
@@ -161,7 +162,7 @@ class InvitationTemplate extends ConsumerWidget {
         style: kBodyText2Style.copyWith(
           color: kBluesColor.shade400,
           fontWeight: FontWeight.bold,
-          height: 1.1,
+          height: 1.4,
         ),
       ),
       TextSpan(
@@ -173,7 +174,7 @@ class InvitationTemplate extends ConsumerWidget {
       TextSpan(
         text: space + eventLocation,
         style: kBodyText2Style.copyWith(
-            color: color, fontWeight: FontWeight.bold, height: 1.1),
+            color: color, fontWeight: FontWeight.bold, height: 1.4),
       ),
       TextSpan(
           text: space + getTr(context, 'on_for_day')!,

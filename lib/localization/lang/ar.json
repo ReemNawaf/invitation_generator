@@ -1,16 +1,15 @@
 {
-    "Hello, Dash!": "أهلًا، بداش!",
-    "to_be_able_to_create_invitations": "حتى تقوم بإنشاء الدعوات",
-    "you_just_need_to_follow": "عليك فقط أتباع",
+    "Hello, Dash!": "يا أهلًا، بداش!",
+    "to_be_able_to_create_invitations": "علشان تنشى الدعوات،",
+    "you_just_need_to_follow": "كل اللي عليك أنك تتبع",
     "steps": "خطوات",
-    "create_invitation": "أنشئ بطاقة دعوة",
+    "create_invitation": "يلا ننشى بطاقة دعوة",
     "create_new_invitation": "أنشئ بطاقة دعوة جديدة",
     
-    
     "from": "من",
-    "add_invitaion_information": "أدخل بيانات الدعوة",
+    "add_invitaion_information": "دخل بيانات الدعوة",
     "invitee_name": "اسم المدعو",
-    "ex_invitee_name": "ريم المطيري",
+    "ex_invitee_name": "مثل: ريم المطيري",
     "male": "ذكر",
     "female": "أنثى",
     "city": "المدينة",
@@ -24,24 +23,24 @@
 
     "day_and_date": "اليوم والوقت",
     "change": "تغيير",
-    "if_there_is": "إن وجد",
+    "if_there_is": "لو كان فيه",
     "event_name": "اسم الحدث",
     "ex_event_name": "مثل: مهرجان فلاتر",
-    "event_name_explanation": "في حال كانت الدعوة لحدث مجدول، وليست فقط لقاء عارض",
+    "event_name_explanation": "يعني لو كانت الدعوة لحدث كبير ومجدول، وليس مجرد لقاء عارض",
     "time": "الوقت",
     "choose_hour": "تغيير الساعة",
     "next": "التالي",
 
-    "you_didnot_enter_the_location_name": "لم تدخل اسم المكان",
-    "location_name_is_too_short": "اسم المكان قصير جدًا",
-    "location_name_is_too_long": "اسم المكان طويل جدًا",
+    "you_didnot_enter_the_location_name": "ما دخلت اسم المكان",
+    "location_name_is_too_short": "اسم المكان مره قصير",
+    "location_name_is_too_long": "اسم المكان مره طويل",
 
-    "event_name_is_too_short": "اسم الحدث قصير جدًا",
-    "event_name_is_too_long": "اسم الحدث طويل جدًا",
+    "event_name_is_too_short": "اسم الحدث مره قصير",
+    "event_name_is_too_long": "اسم الحدث مره طويل",
 
-    "you_didnot_enter_the_invitee_name": "لم تدخل اسم المدعو",
-    "invitee_name_is_too_short": "اسم المدعو قصير جدًا؛ لا أعتقد أنه اسم شخص",
-    "invitee_name_is_too_long": "اسم المدعو طويل جدًا، الاسم الأول والثاني يكفيان",
+    "you_didnot_enter_the_invitee_name": "ما دخلت اسم المدعو",
+    "invitee_name_is_too_short": "اسم المدعو مره قصير، ما أتوقع أنه اسم شخص (:",
+    "invitee_name_is_too_long": "اسم المدعو مره طويل، الاسم الأول والثاني يكفون",
 
 
     "choose_the_template": "اختر القالب",
@@ -60,9 +59,14 @@
     "comma": "،",
     "best_regards": "مع خالص تحياتي،",
     "dash": "داش",
-    "invitation_card": "بطاقة الدعوة",
+    "invitation_card": "بطاقة دعوة",
     "edit": "تعديل",
-    "share": "مشاركة"
+    "share": "مشاركة",
+
+
+    "I_will_be_glad_to_have_you": "يسعدني حضورك",
+    "good_morning": "صباح الخير",
+    "good_evening": "مساء الخير"
 
 
 }

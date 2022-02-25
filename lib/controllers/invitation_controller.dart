@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:invitation_generator/controllers/invitation_state.dart';
 import 'package:invitation_generator/shared/constants.dart';
+import 'package:uuid/uuid.dart';
 
-final inviIdProvider = StateProvider((ref) => '');
+final inviIdProvider = StateProvider((ref) => const Uuid().v4());
 final inviteeNameProvider = StateProvider((ref) => '');
 final inviteeGenderProvider = StateProvider((ref) => Gender.male);
 final eventDateProvider = StateProvider((ref) => DateTime.now());
@@ -51,7 +52,7 @@ class InvitationNotifier extends StateNotifier<InvitationState> {
   void reset() {
     state = InvitationState.inital();
 
-    read(inviIdProvider.state).state = '';
+    read(inviIdProvider.state).state = const Uuid().v4();
     read(inviteeNameProvider.state).state = '';
     read(inviteeGenderProvider.state).state = Gender.male;
     read(eventDateProvider.state).state = DateTime.now();

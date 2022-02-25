@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:invitation_generator/localization/localization_constants.dart';
 import 'dart:ui' as ui;
 
 import 'package:path_provider/path_provider.dart';
@@ -20,16 +21,24 @@ class Utils {
   }
 
   static void shareInvAsPNG(
-      {required Uint8List bytes, required String invPath}) async {
+      {required Uint8List bytes,
+      required String invPath,
+      required BuildContext context}) async {
     final dir = await getExternalStorageDirectory();
     final imagePath = dir!.path + '/$invPath.png';
     File imageFile = File(imagePath);
+
+    final message = ((DateTime.now().hour >= 0 && DateTime.now().hour < 12)
+            ? getTr(context, 'good_morning')
+            : getTr(context, 'good_evening') ?? "")! +
+        '\n' +
+        getTr(context, 'I_will_be_glad_to_have_you')!;
 
     if (!await imageFile.exists()) {
       imageFile.create(recursive: true);
     }
     imageFile.writeAsBytesSync(bytes);
 
-    Share.shareFiles([imagePath], text: 'ff');
+    Share.shareFiles([imagePath], text: message);
   }
 }

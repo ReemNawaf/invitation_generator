@@ -58,7 +58,12 @@
     "dash": "Dash",
     "invitation_card": "Invitation Card",
     "edit": "Edit",
-    "share": "Share"
+    "share": "Share",
+
+    
+    "I_will_be_glad_to_have_you": "I will be glad to have you",
+    "good_morning": "Good morning",
+    "good_evening": "Good evening"
 
 
 }

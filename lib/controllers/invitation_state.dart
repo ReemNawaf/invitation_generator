@@ -41,34 +41,4 @@ class InvitationState {
       theme: invTheme.nature,
     );
   }
-
-  // InvitationState copyWith({
-  //   String? inviteeName,
-  //   Gender? inviteeGender,
-  //   DateTime? eventDate,
-  //   TimeOfDay? eventTime,
-  //   String? eventName,
-  //   String? eventLocation,
-  //   invTheme? theme,
-  //   Uint8List? invImageBytes,
-  //   InvitationState? status,
-  //   bool? hasValidInviteeName,
-  //   bool? hasValidEventName,
-  //   bool? hasValidLocationName,
-  // }) {
-  //   return InvitationState(
-  //     id: id,
-  //     inviteeName: inviteeName ?? this.inviteeName,
-  //     inviteeGender: inviteeGender ?? this.inviteeGender,
-  //     eventDate: eventDate ?? this.eventDate,
-  //     eventTime: eventTime ?? this.eventTime,
-  //     eventName: eventName ?? this.eventName,
-  //     eventLocation: eventLocation ?? this.eventLocation,
-  //     theme: theme ?? this.theme,
-  //     invImageBytes: invImageBytes ?? this.invImageBytes,
-  //     hasValidInviteeName: hasValidInviteeName ?? this.hasValidInviteeName,
-  //     hasValidEventName: hasValidEventName ?? this.hasValidEventName,
-  //     hasValidLocationName: hasValidLocationName ?? this.hasValidLocationName,
-  //   );
-  // }
 }

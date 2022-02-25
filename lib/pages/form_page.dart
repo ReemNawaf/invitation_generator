@@ -53,7 +53,7 @@ class FormPage extends StatelessWidget {
                             const InviteeNameField(),
                             const SizedBox(height: 18.0),
                             const GenderField(),
-                            sizedBox,
+                            SizedBox(height: lang == arabic ? 8.0 : 10.0),
                             const EventLocationField(),
                             sizedBox,
                             EventDate(formKey: _formKey),

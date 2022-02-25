@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.invitation_generator">
+    package="com.abrain.invitation_generator">
    <application
-        android:label="invitation_generator"
+        android:label="invitation generator"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

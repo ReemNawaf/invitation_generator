@@ -65,12 +65,12 @@ class HomePage extends StatelessWidget {
                       ),
                       const SizedBox(width: 8.0),
                       Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 1.0, horizontal: 14.0),
-                        child: Text(
-                          '$appStepsNum ${getTr(context, 'steps')}',
-                          style: kCaption1Style,
+                        padding: EdgeInsets.symmetric(
+                          vertical: lang == english ? 5.0 : 1.0,
+                          horizontal: 14.0,
                         ),
+                        child: Text('$appStepsNum ${getTr(context, 'steps')}',
+                            style: kCaption1Style),
                         decoration: BoxDecoration(
                           borderRadius: kAppBorderRadius,
                           color: kPurplesColor.shade400.withOpacity(0.6),

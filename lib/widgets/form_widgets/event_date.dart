@@ -5,6 +5,7 @@ import 'package:invitation_generator/controllers/invitation_controller.dart';
 import 'package:invitation_generator/localization/localization_constants.dart';
 import 'package:invitation_generator/shared/app_colors.dart';
 import 'package:invitation_generator/shared/text_styles.dart';
+import 'package:invitation_generator/shared/ui_helpers.dart';
 
 class EventDate extends StatelessWidget {
   final GlobalKey<FormState> formKey;
@@ -46,6 +47,7 @@ class EventDate extends StatelessWidget {
                 style: kSubheadStyle.copyWith(
                     fontWeight: FontWeight.bold, height: 1.5),
               ),
+              if (lang == english) sizedBox,
               Text(
                 '${DateFormat.EEEE(lang).format(date)}${getTr(context, 'comma')} ${DateFormat.yMMMd(lang).format(date)}',
                 style: kSubheadStyle.copyWith(

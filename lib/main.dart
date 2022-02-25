@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:invitation_generator/controllers/invitation_state.dart';
 import 'package:invitation_generator/localization/app_localization.dart';
 import 'package:invitation_generator/localization/localization_constants.dart';
 import 'package:invitation_generator/pages/choosing_template_page.dart';
 import 'package:invitation_generator/pages/form_page.dart';
 import 'package:invitation_generator/pages/home_page.dart';
 import 'package:invitation_generator/pages/preview_page.dart';
-import 'package:invitation_generator/pages/share_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:invitation_generator/shared/app_colors.dart';
 import 'package:invitation_generator/shared/text_styles.dart';
@@ -62,7 +60,6 @@ class _MyAppState extends State<MyApp> {
       routes: {
         HomePage.routeName: (context) => const HomePage(),
         PreviewPage.routeName: (context) => const PreviewPage(),
-        SharePage.routeName: (context) => const SharePage(),
         FormPage.routeName: (context) => FormPage(),
         ChoosingTemplatePage.routeName: (context) =>
             const ChoosingTemplatePage(),
