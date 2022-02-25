@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:invitation_generator/controllers/invitation_state.dart';
 import 'package:invitation_generator/localization/app_localization.dart';
 import 'package:invitation_generator/localization/localization_constants.dart';
 import 'package:invitation_generator/pages/choosing_template_page.dart';
@@ -10,7 +12,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:invitation_generator/shared/app_colors.dart';
 import 'package:invitation_generator/shared/text_styles.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(const ProviderScope(child: MyApp()));
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -81,7 +83,7 @@ class _MyAppState extends State<MyApp> {
                   headline2: kTitle3Style,
                   headline1: kTitle3Style,
                   bodyText1: kbodyeStyle,
-                  bodyText2: kSubheadStyle,
+                  bodyText2: kBodyText2Style,
                 )
                 .apply(
                   fontFamily: lang == arabic ? 'NotoSansArabic' : 'OpenSans',

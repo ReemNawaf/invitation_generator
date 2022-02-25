@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:invitation_generator/controllers/invitation_controller.dart';
 import 'package:invitation_generator/localization/localization_constants.dart';
 import 'package:invitation_generator/pages/preview_page.dart';
 import 'package:invitation_generator/shared/app_colors.dart';
@@ -34,22 +36,25 @@ class ChoosingTemplatePage extends StatelessWidget {
                       stepNum: 2,
                     ),
                     sizedBox,
-                    GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        childAspectRatio: 0.87,
-                        crossAxisSpacing: 10.0,
-                        mainAxisSpacing: 10.0,
-                        crossAxisCount: 2,
-                      ),
-                      shrinkWrap: true,
-                      itemCount: 4,
-                      itemBuilder: (context, index) {
-                        return ThemeCardOption(
-                          index: index,
-                        );
-                      },
-                    ),
+                    Consumer(
+                        builder: (context, ref, child) => GridView.builder(
+                              gridDelegate:
+                                  const SliverGridDelegateWithFixedCrossAxisCount(
+                                childAspectRatio: 0.87,
+                                crossAxisSpacing: 10.0,
+                                mainAxisSpacing: 10.0,
+                                crossAxisCount: 2,
+                              ),
+                              shrinkWrap: true,
+                              itemCount: 4,
+                              itemBuilder: (context, index) {
+                                return ThemeCardOption(
+                                  index: index,
+                                  theme: ref.watch(inviThemeProvider),
+                                  notifier: ref.watch(invitationProvider),
+                                );
+                              },
+                            )),
                     const SizedBox(height: 16.0),
                     AppButton(
                       label: getTr(context, 'next')!,
@@ -73,19 +78,24 @@ class ThemeCardOption extends StatelessWidget {
   const ThemeCardOption({
     Key? key,
     required this.index,
+    required this.theme,
+    required this.notifier,
   }) : super(key: key);
 
   final int index;
+  final invTheme theme;
+  final InvitationNotifier notifier;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    final currentTheme = invThemes[0];
-    final isSelected = invThemes[index] == currentTheme;
+
+    final isSelected = invThemes[index] == theme;
     var cardColor = getThemeColor(invThemes[index]);
     final lang = Localizations.localeOf(context).languageCode;
+
     return GestureDetector(
-      onTap: () {},
+      onTap: () => notifier.setTheme(invThemes[index]),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
@@ -131,8 +141,8 @@ class ThemeCardOption extends StatelessWidget {
                 lang == arabic
                     ? themesNamesAra[index]
                     : invThemes[index].name.toUpperCase(),
-                style: kCardTextStyle.copyWith(
-                    height: 1.2, fontWeight: FontWeight.bold),
+                style: kBodyText2Style.copyWith(
+                    height: 1.2, fontWeight: FontWeight.w600),
               ),
             ],
           ),

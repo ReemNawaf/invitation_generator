@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:invitation_generator/controllers/invitation_controller.dart';
 import 'package:invitation_generator/localization/localization_constants.dart';
 import 'package:invitation_generator/shared/app_colors.dart';
 import 'package:invitation_generator/shared/constants.dart';
@@ -10,42 +12,48 @@ const double imageWidth = 100;
 const String space = ' ';
 const newLine = TextSpan(text: '\n');
 
-class InvitationTemplate extends StatelessWidget {
+class InvitationTemplate extends ConsumerWidget {
   const InvitationTemplate({Key? key}) : super(key: key);
-  final hasEventName = true;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final lang = Localizations.localeOf(context).languageCode;
-    final date = '${DateFormat.MMMMd(lang).format(DateTime.now())} ';
-    const color = kPurplesColor;
 
-    const inviteeName = '';
-    const inviteeGender = Gender.male;
-    const eventLocation = '';
+    final date = ref.watch(eventDateProvider);
+    final dateFormatted = '${DateFormat.MMMMd(lang).format(date)} ';
+
+    final inviteeName = ref.watch(inviteeNameProvider);
+    final inviteeGender = ref.watch(inviteeGenderProvider);
+    final eventLocation = ref.watch(eventLocationProvider);
+
+    final eventName = ref.watch(eventNameProvider);
+    final hasEventName = eventName.isNotEmpty;
+
+    final theme = ref.watch(inviThemeProvider);
+    final color = getThemeColor(theme).shade400;
 
     final eventDay = TextSpan(
-      text: space + DateFormat('EEEE').format(DateTime.now()),
-      style: kCardTextStyle.copyWith(
+      text: space + DateFormat.EEEE(lang).format(date),
+      style: kBodyText2Style.copyWith(
         color: kBluesColor.shade400,
         fontWeight: FontWeight.bold,
       ),
     );
 
     final eventDate = TextSpan(
-      text: date,
-      style: kCardTextStyle.copyWith(
+      text: dateFormatted,
+      style: kBodyText2Style.copyWith(
         color: color,
         fontWeight: FontWeight.bold,
       ),
     );
-    const eventName = 'Flutter Festival';
 
     final localizations = MaterialLocalizations.of(context);
-    final eventTime = localizations.formatTimeOfDay(TimeOfDay.now());
+    final eventTime =
+        localizations.formatTimeOfDay(ref.watch(eventTimeProvider));
 
     Size size = MediaQuery.of(context).size;
-    final myDearFriend = (lang == english || inviteeGender == Gender.female)
+    final myDearFriend = (lang == english || inviteeGender == Gender.male)
         ? getTr(context, 'my_dear_friend')
         : getTr(context, 'my_dear_friend_female');
 
@@ -59,7 +67,7 @@ class InvitationTemplate extends StatelessWidget {
           width: 5,
         ),
       ),
-      child: getThemeDashImage(invTheme.violet),
+      child: getThemeDashImage(theme),
     );
 
     Widget headerAndName = Expanded(
@@ -70,41 +78,42 @@ class InvitationTemplate extends StatelessWidget {
         children: [
           Container(
             color: color,
+            padding:
+                EdgeInsets.symmetric(vertical: lang == english ? 6.0 : 0.0),
             child: Text(
               getTr(context, 'invitation_card')!,
               style: kbodyeStyle.copyWith(
                 fontWeight: FontWeight.bold,
+                fontSize: lang == english ? 14 : 17,
               ),
               textAlign: TextAlign.center,
             ),
           ),
-          SizedBox(height: lang == arabic ? 8.0 : 6.0),
+          SizedBox(height: hasEventName ? 8.0 : 14.0),
           Container(
             padding: const EdgeInsets.only(right: 6),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   '$myDearFriend',
-                  style: kCardTextStyle.copyWith(
-                      fontWeight: FontWeight.bold, height: 1.5),
+                  style: kBodyText2Style.copyWith(
+                      fontWeight: FontWeight.bold,
+                      height: hasEventName ? 1.4 : 1.8),
                 ),
                 Text(
                   inviteeName,
-                  style: kCardTextStyle.copyWith(
-                      height: lang == arabic ? 1.6 : 1.1,
-                      color: color,
-                      fontWeight: FontWeight.bold),
+                  style: kBodyText2Style.copyWith(
+                      height: 1.6, color: color, fontWeight: FontWeight.bold),
                 ),
                 if (hasEventName)
                   Text(
                     getTr(context, 'i_am_pleased')!,
-                    style: kCardTextStyle.copyWith(
-                      height: lang == arabic ? 1.6 : 1.1,
+                    style: kBodyText2Style.copyWith(
+                      height: lang == arabic ? 1.2 : 1.1,
                     ),
                   )
-                else
-                  sizedBox,
               ],
             ),
           ),
@@ -113,24 +122,34 @@ class InvitationTemplate extends StatelessWidget {
     );
 
     final firstContentTempENG = [
+      newLine,
       TextSpan(text: space + getTr(context, 'on_for_day')!),
       eventDay,
       TextSpan(text: getTr(context, 'comma_for_date')! + space),
       eventDate,
+      newLine,
       TextSpan(text: getTr(context, 'in_for_city')! + space),
       TextSpan(
-        text: 'Jeddah',
-        style: kCardTextStyle.copyWith(
+        text: eventLocation,
+        style: kBodyText2Style.copyWith(
           color: kBluesColor.shade400,
           fontWeight: FontWeight.bold,
         ),
       ),
+      const TextSpan(text: '.'),
     ];
 
     final firstContentTempAR = [
       eventDay,
       const TextSpan(text: '\n'),
       TextSpan(text: getTr(context, 'in_for_city')! + space),
+      TextSpan(
+        text: eventLocation,
+        style: kBodyText2Style.copyWith(
+          color: kBluesColor.shade400,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
       const TextSpan(text: '\n'),
       TextSpan(text: getTr(context, 'on_for_day_M')! + space),
       eventDate,
@@ -139,7 +158,7 @@ class InvitationTemplate extends StatelessWidget {
     final secondContentTempENG = [
       TextSpan(
         text: eventName,
-        style: kCardTextStyle.copyWith(
+        style: kBodyText2Style.copyWith(
           color: kBluesColor.shade400,
           fontWeight: FontWeight.bold,
           height: 1.1,
@@ -153,7 +172,7 @@ class InvitationTemplate extends StatelessWidget {
           style: kTestStyleWith1Height),
       TextSpan(
         text: space + eventLocation,
-        style: kCardTextStyle.copyWith(
+        style: kBodyText2Style.copyWith(
             color: color, fontWeight: FontWeight.bold, height: 1.1),
       ),
       TextSpan(
@@ -164,8 +183,8 @@ class InvitationTemplate extends StatelessWidget {
           text: getTr(context, 'comma_for_date')!,
           style: kTestStyleWith1Height),
       TextSpan(
-        text: space + date,
-        style: kCardTextStyle.copyWith(
+        text: space + dateFormatted,
+        style: kBodyText2Style.copyWith(
           color: color,
           fontWeight: FontWeight.bold,
           height: 1.1,
@@ -176,7 +195,7 @@ class InvitationTemplate extends StatelessWidget {
           style: kTestStyleWith1Height),
       TextSpan(
         text: space + eventTime,
-        style: kCardTextStyle.copyWith(
+        style: kBodyText2Style.copyWith(
           color: kBluesColor.shade400,
           fontWeight: FontWeight.bold,
           height: 1.1,
@@ -186,40 +205,41 @@ class InvitationTemplate extends StatelessWidget {
 
     final secondContentTempAR = [
       TextSpan(
-        text: 'invitation.getEventName',
-        style: kCardTextStyle.copyWith(
+        text: eventName,
+        style: kBodyText2Style.copyWith(
           color: kBluesColor.shade400,
           fontWeight: FontWeight.bold,
         ),
       ),
-      if (lang == english) TextSpan(text: getTr(context, 'event')!),
-      const TextSpan(text: '\n'),
-      TextSpan(text: getTr(context, 'to_be_held_in')!),
       TextSpan(
-        text: eventLocation,
-        style: kCardTextStyle.copyWith(
+          text: space + getTr(context, 'to_be_held_in')!,
+          style: kBodyText2Style),
+      TextSpan(
+        text: space + eventLocation,
+        style: kBodyText2Style.copyWith(
           color: kBluesColor.shade400,
           fontWeight: FontWeight.bold,
         ),
       ),
-      TextSpan(text: getTr(context, 'at_for_time')!),
+      TextSpan(text: space + getTr(context, 'at_for_time')! + space),
       TextSpan(
         text: eventTime,
-        style: kCardTextStyle.copyWith(
+        style: kBodyText2Style.copyWith(
           color: color,
           fontWeight: FontWeight.bold,
         ),
       ),
-      const TextSpan(text: '\n'),
-      TextSpan(
-        text: date,
-        style: kCardTextStyle.copyWith(
-          color: color,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
+      TextSpan(text: space + getTr(context, 'on_for_day')!),
       eventDay,
-      TextSpan(text: getTr(context, 'comma_for_date')!),
+      newLine,
+      TextSpan(text: space + getTr(context, 'comma_for_date')!),
+      TextSpan(
+        text: space + dateFormatted,
+        style: kBodyText2Style.copyWith(
+          color: color,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
     ];
 
     // card size
@@ -228,7 +248,7 @@ class InvitationTemplate extends StatelessWidget {
       width: size.width,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: color.shade800,
+        color: getThemeColor(theme).shade800,
       ),
       child: Stack(
         alignment: Alignment.center,
@@ -263,20 +283,22 @@ class InvitationTemplate extends StatelessWidget {
                     lang == arabic ? headerAndName : dashImage
                   ],
                 ),
+                if (lang == arabic) const SizedBox(height: 10.0),
                 RichText(
                   textAlign: TextAlign.center,
                   text: TextSpan(
                       text: !hasEventName
                           ? getTr(context, 'i_will_be_so_glad_to_see_you')
-                          : '${getTr(context, 'to_attend')} ${lang == arabic ? '${getTr(context, 'event')}' : ''}',
-                      style: kCardTextStyle.copyWith(height: 1.4),
+                          : '${getTr(context, 'to_attend')} ${lang == arabic ? '${getTr(context, 'event')} ' : ''}',
+                      style: kCardTextStyle(lang),
                       children: !hasEventName
                           // fisrt content template
                           ? [
                               if (lang == english)
                                 ...firstContentTempENG
                               else
-                                ...firstContentTempAR
+                                ...firstContentTempAR,
+                              const TextSpan(text: '.'),
                             ]
 
                           // second content template
@@ -285,9 +307,10 @@ class InvitationTemplate extends StatelessWidget {
                                 ...secondContentTempENG
                               else
                                 ...secondContentTempAR,
+                              const TextSpan(text: '.'),
                             ]),
                 ),
-                if (lang == arabic) const SizedBox(height: 5.0),
+                if (lang == arabic) const SizedBox(height: 6.0),
                 Row(
                   children: [
                     Column(
@@ -301,9 +324,10 @@ class InvitationTemplate extends StatelessWidget {
                         Text(
                           getTr(context, 'dash')!,
                           style: kCaption1Style.copyWith(
-                              fontWeight: FontWeight.bold,
-                              height: 1.43,
-                              color: color),
+                            fontWeight: FontWeight.bold,
+                            height: 1.43,
+                            color: color,
+                          ),
                         ),
                       ],
                     ),

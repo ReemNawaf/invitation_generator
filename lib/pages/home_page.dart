@@ -27,7 +27,6 @@ class HomePage extends StatelessWidget {
                 alignment:
                     lang == arabic ? Alignment.topLeft : Alignment.topRight,
                 child: const ChangeLanguage()),
-            //const Spacer(),
             Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,

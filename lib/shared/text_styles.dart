@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:invitation_generator/localization/localization_constants.dart';
 import 'package:invitation_generator/shared/app_colors.dart';
 
-const kCardTextStyle = TextStyle(
+const kBodyText2Style = TextStyle(
   fontSize: 14,
   decoration: TextDecoration.none,
   color: kPrimaryLableColor,
-  height: 1.2,
 );
+
+TextStyle kCardTextStyle(String lang) => TextStyle(
+      fontSize: 14,
+      decoration: TextDecoration.none,
+      color: kPrimaryLableColor,
+      height: 1.5,
+      fontFamily: lang == arabic ? 'NotoSansArabic' : 'OpenSans',
+    );
 
 const headerStyle = TextStyle(
   fontSize: 35,
@@ -21,7 +29,6 @@ final kTitle1Style = TextStyle(
   fontSize: 28.0,
   fontWeight: FontWeight.bold,
   color: kPurplesColor[400],
-  fontFamily: 'Tajawal',
 );
 const kTitle2Style = TextStyle(
   fontSize: 22.0,

@@ -35,8 +35,10 @@ class FormPage extends StatelessWidget {
                   physics: const ClampingScrollPhysics(),
                   children: [
                     AppTitle(
-                        title: getTr(context, 'add_invitaion_information')!,
-                        stepNum: 1),
+                      title: getTr(context, 'add_invitaion_information')!,
+                      stepNum: 1,
+                    ),
+                    if (lang == english) const SizedBox(height: 8.0),
                     Padding(
                       padding: EdgeInsets.only(
                         top: 10.0,
@@ -49,7 +51,7 @@ class FormPage extends StatelessWidget {
                         child: Column(
                           children: [
                             const InviteeNameField(),
-                            const SizedBox(height: 10.0),
+                            const SizedBox(height: 18.0),
                             const GenderField(),
                             sizedBox,
                             const EventLocationField(),
@@ -70,23 +72,23 @@ class FormPage extends StatelessWidget {
                                 divider,
                               ],
                             ),
-                            sizedBox,
+                            const SizedBox(height: 12.0),
                             Container(
                               decoration: BoxDecoration(
                                 color: kBluesColor.shade800.withOpacity(0.5),
                                 borderRadius: kAppBorderRadius,
                               ),
                               padding: EdgeInsets.symmetric(
-                                  horizontal: lang == english ? 16.0 : 50.0,
-                                  vertical: lang == english ? 10.0 : 12.0),
+                                horizontal: lang == english ? 16.0 : 50.0,
+                                vertical: 12.0,
+                              ),
                               child: Text(
                                 getTr(context, 'event_name_explanation')!,
-                                style: kFootnoteStyle.copyWith(
-                                    height: lang == english ? 1.1 : 1.5),
+                                style: kFootnoteStyle.copyWith(height: 1.5),
                                 textAlign: TextAlign.center,
                               ),
                             ),
-                            sizedBox,
+                            const SizedBox(height: 12.0),
                             const EventNameField(),
                             sizedBox,
                             EventTime(formKey: _formKey),

@@ -24,7 +24,7 @@ class AppButton extends StatelessWidget {
     final text = Text(
       label,
       style: kSubheadStyle.copyWith(
-          color: kWhiteColor, fontWeight: FontWeight.bold),
+          color: kWhiteColor, fontWeight: FontWeight.w500),
     );
     return RawMaterialButton(
       onPressed: onPressed,
@@ -44,9 +44,9 @@ class AppButton extends StatelessWidget {
           : Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                text,
-                const SizedBox(width: 8),
                 Icon(icon, color: kWhiteColor),
+                const SizedBox(width: 8),
+                text,
               ],
             ),
     );

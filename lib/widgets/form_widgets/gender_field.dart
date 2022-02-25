@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:invitation_generator/controllers/invitation_controller.dart';
 import 'package:invitation_generator/localization/localization_constants.dart';
 import 'package:invitation_generator/shared/app_colors.dart';
 import 'package:invitation_generator/shared/box_dec.dart';
@@ -8,33 +10,36 @@ import 'package:invitation_generator/shared/text_styles.dart';
 final selectedChoiceColor = kBluesColor[400];
 final notSelectedChoiceColor = kBluesColor[800];
 
-// final selectedChoiceColor = kPurplesColor[400];
-// final notSelectedChoiceColor = kPurplesColor[800];
-
 class GenderField extends StatelessWidget {
   const GenderField({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: getChoiceContainer(
-            context,
-            genderChoice: Gender.male,
-            text: getTr(context, 'male')!,
-            direction: Direction.right,
+    return Consumer(
+      builder: (context, ref, child) => Row(
+        children: [
+          Expanded(
+            child: getChoiceContainer(
+              context,
+              gender: ref.watch(inviteeGenderProvider),
+              genderChoice: Gender.male,
+              text: getTr(context, 'male')!,
+              direction: Direction.right,
+              notifier: ref.watch(invitationProvider),
+            ),
           ),
-        ),
-        Expanded(
-          child: getChoiceContainer(
-            context,
-            genderChoice: Gender.female,
-            text: getTr(context, 'female')!,
-            direction: Direction.left,
+          Expanded(
+            child: getChoiceContainer(
+              context,
+              gender: ref.watch(inviteeGenderProvider),
+              genderChoice: Gender.female,
+              text: getTr(context, 'female')!,
+              direction: Direction.left,
+              notifier: ref.watch(invitationProvider),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -42,14 +47,15 @@ class GenderField extends StatelessWidget {
     BuildContext context, {
     required String text,
     required Gender genderChoice,
+    required Gender gender,
     required Direction direction,
+    required InvitationNotifier notifier,
   }) {
     Color color;
     BorderRadius borderRadius;
 
     final lang = Localizations.localeOf(context).languageCode;
 
-    const gender = Gender.male;
     if (genderChoice == Gender.female) {
       color = gender == Gender.female
           ? selectedChoiceColor!
@@ -83,7 +89,7 @@ class GenderField extends StatelessWidget {
     }
 
     return GestureDetector(
-      onTap: () {},
+      onTap: () => notifier.setInviteeGender(genderChoice),
       child: Container(
         alignment: Alignment.center,
         height: 45,

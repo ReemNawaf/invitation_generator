@@ -21,7 +21,8 @@ class ChangeLanguage extends StatelessWidget {
     return GestureDetector(
       child: Text(
         isArabic ? 'English' : 'عربي',
-        style: kCalloutStyle,
+        style: kCalloutStyle.copyWith(
+            fontFamily: !isArabic ? 'NotoSansArabic' : 'OpenSans'),
       ),
       onTap: () {
         _changeLanguage(
